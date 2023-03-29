@@ -38,13 +38,13 @@ export default class App extends Lightning.Component {
         flex: {
           direction: 'column',
         },
-        Names: {},
       },
     }
   }
 
   async _handleEnter() {
-    const data = await getPokemon()
+    this.pokemonId++
+    const data = await getPokemon(this.pokemonId)
     let tempNames = [...this.tag('Results').children]
     tempNames.push({
       text: {
@@ -55,5 +55,9 @@ export default class App extends Lightning.Component {
       children: tempNames,
     })
     console.log({ data })
+  }
+
+  _init() {
+    this.pokemonId = 1
   }
 }
