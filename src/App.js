@@ -42,6 +42,20 @@ export default class App extends Lightning.Component {
     }
   }
 
+  _handleUp() {
+    this.tag('Results').patch({
+      smooth: {
+        y: this.tag('Results').y - 10,
+      },
+    })
+  }
+  _handleDown() {
+    this.tag('Results').patch({
+      smooth: {
+        y: this.tag('Results').y + 10,
+      },
+    })
+  }
   async _handleEnter() {
     this.pokemonId++
     const data = await getPokemon(this.pokemonId)
