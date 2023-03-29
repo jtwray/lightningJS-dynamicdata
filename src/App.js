@@ -32,10 +32,28 @@ export default class App extends Lightning.Component {
         h: 1080,
         color: 0xfffbb03b,
       },
+      Results: {
+        rect: true,
+        color: 0xff808080,
+        flex: {
+          direction: 'column',
+        },
+        Names: {},
+      },
     }
   }
 
-  async _init() {
+  async _handleEnter() {
     const data = await getPokemon()
+    let tempNames = [...this.tag('Results').children]
+    tempNames.push({
+      text: {
+        text: data.name,
+      },
+    })
+    this.tag('Results').patch({
+      children: tempNames,
+    })
+    console.log({ data })
   }
 }
